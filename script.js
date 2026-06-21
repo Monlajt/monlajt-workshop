@@ -3,6 +3,45 @@
    SCRIPT.JS
 ================================== */
 /* ==========================
+   TESTOWE STATUSY
+========================== */
+
+const wolfData = {
+
+    animalPL:"🐺 Wilk",
+    animalEN:"🐺 Wolf",
+
+    statusPL:"🎨 Malowanie",
+    statusEN:"🎨 Painting",
+
+    progress:70
+
+};
+
+const foxData = {
+
+    animalPL:"🦊 Lis",
+    animalEN:"🦊 Fox",
+
+    statusPL:"📦 Pakowanie",
+    statusEN:"📦 Packing",
+
+    progress:95
+
+};
+
+const deerData = {
+
+    animalPL:"🦌 Sarna",
+    animalEN:"🦌 Deer",
+
+    statusPL:"🧵 Tworzenie bazy",
+    statusEN:"🧵 Base Creation",
+
+    progress:25
+
+};
+/* ==========================
    GOOGLE SHEETS
 ========================== */
 
