@@ -372,7 +372,9 @@ document.addEventListener(
                 .toLowerCase();
 
                 const commission =
-                commissions[code];
+sheetCommissions[code]
+||
+commissions[code];
 
                 if(!commission){
 
