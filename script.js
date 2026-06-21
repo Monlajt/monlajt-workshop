@@ -503,7 +503,7 @@ async function loadSheetData(){
     animalEN:
     cols[5]?.trim(),
 
-    animalPL:
+    AnimalPL:
     cols[6]?.trim()
 
 };
