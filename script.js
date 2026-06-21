@@ -486,27 +486,27 @@ async function loadSheetData(){
 
             if(!code) return;
 
-            sheetCommissions[code] = {
+           sheetCommissions[code] = {
 
-                statusPL:
-                cols[1]?.trim(),
+    statusPL:
+    cols[1]?.trim(),
 
-                statusEN:
-                cols[2]?.trim(),
+    statusEN:
+    cols[2]?.trim(),
 
-                progress:
-                Number(cols[3]),
+    progress:
+    Number(cols[3]),
 
-                updated:
-                cols[4]?.trim(),
+    updated:
+    cols[4]?.trim(),
 
-                animalEN:
-               cols[5]?.trim(),
+    animalEN:
+    cols[5]?.trim(),
 
-            animalPL:
-            cols[6]?.trim()
+    animalPL:
+    cols[6]?.trim()
 
-            };
+};
 
         });
 
