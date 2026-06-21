@@ -402,9 +402,12 @@ localStorage.getItem("language")
 || "pl";
 
 const animal =
+
 language === "en"
-? commission.animalEN
-: commission.animalPL;
+
+? `🐾 ${commission.animalEN || commission.animalPL || code}`
+
+: `🐾 ${commission.animalPL || code}`;
 
 const status =
 language === "en"
@@ -498,7 +501,10 @@ async function loadSheetData(){
                 cols[4]?.trim(),
 
                 animalEN:
-                cols[5]?.trim()
+               cols[5]?.trim(),
+
+            animalPL:
+            cols[6]?.trim()
 
             };
 
