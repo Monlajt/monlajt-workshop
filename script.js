@@ -2,6 +2,8 @@
    MONLAJT WORKSHOP
    SCRIPT.JS
 ================================== */
+
+
 /* ==========================
    GOOGLE SHEETS
 ========================== */
@@ -9,33 +11,31 @@
 const SHEET_URL =
 "https://docs.google.com/spreadsheets/d/e/2PACX-1vSEx-Yth7lrD6zvvN8owvWmSYr0xdey995kERQpOym9X_ksxJuvk99c4z6kIWyaIkm2bVZtknm4ejf8/pub?output=csv";
 
+
 let sheetCommissions = {};
-const commissions = {
 
-    "wilk": wolfData,
-    "wolf": wolfData,
 
-    "lis": foxData,
-    "fox": foxData,
 
-    "sarna": deerData,
-    "deer": deerData
-
-};
-   
 /* ==========================
    JĘZYKI
 ========================== */
 
+
 function setLanguage(lang){
+
 
     const elements =
     document.querySelectorAll("[data-pl]");
 
-    elements.forEach(element => {
+
+    elements.forEach(element=>{
+
 
         const translation =
-        element.getAttribute(`data-${lang}`);
+        element.getAttribute(
+            `data-${lang}`
+        );
+
 
         if(translation){
 
@@ -44,29 +44,39 @@ function setLanguage(lang){
 
         }
 
+
     });
-/* PLACEHOLDERY */
 
-const placeholders =
-document.querySelectorAll(
-    "[data-placeholder-pl]"
-);
 
-placeholders.forEach(element=>{
 
-    const placeholder =
-    element.getAttribute(
-        `data-placeholder-${lang}`
+    /* PLACEHOLDERY */
+
+
+    const placeholders =
+    document.querySelectorAll(
+        "[data-placeholder-pl]"
     );
 
-    if(placeholder){
 
-        element.placeholder =
-        placeholder;
+    placeholders.forEach(element=>{
 
-    }
 
-});
+        const placeholder =
+        element.getAttribute(
+            `data-placeholder-${lang}`
+        );
+
+
+        if(placeholder){
+
+            element.placeholder =
+            placeholder;
+
+        }
+
+
+    });
+
 
 
     localStorage.setItem(
@@ -74,419 +84,663 @@ placeholders.forEach(element=>{
         lang
     );
 
+
 }
 
 
-/* ==========================
-   ŁADOWANIE JĘZYKA
-========================== */
+
 
 window.addEventListener(
-    "load",
-    () => {
+"load",
+()=>{
 
-        const savedLanguage =
-        localStorage.getItem("language")
-        || "pl";
 
-        setLanguage(savedLanguage);
+    const savedLanguage =
+    localStorage.getItem("language")
+    || "pl";
 
-    }
-);
+
+    setLanguage(savedLanguage);
+
+
+});
+
+
+
 
 /* ==========================
-   MODAL
+   MODAL ZAMÓWIENIA
 ========================== */
 
+
 document.addEventListener(
-    "DOMContentLoaded",
-    () => {
+"DOMContentLoaded",
+()=>{
 
-        const modal =
-        document.getElementById(
-            "orderModal"
-        );
 
-        const openButton =
-        document.getElementById(
-            "openOrderForm"
-        );
-
-        const closeButton =
-        document.querySelector(
-            ".close-modal"
-        );
-
-        const continueButton =
-        document.getElementById(
-            "continueButton"
-        );
-
-        const acceptRules =
-        document.getElementById(
-            "acceptRules"
-        );
-
-        const orderSection =
-        document.getElementById(
-            "orderSection"
-        );
-
-        /* OTWÓRZ */
-
-        if(openButton){
-
-            openButton.addEventListener(
-                "click",
-                (e)=>{
-
-                    e.preventDefault();
-
-                    modal.style.display =
-                    "block";
-
-                }
-            );
-
-        }
-
-        /* ZAMKNIJ */
-
-        if(closeButton){
-
-            closeButton.addEventListener(
-                "click",
-                ()=>{
-
-                    modal.style.display =
-                    "none";
-
-                }
-            );
-
-        }
-
-        /* KLIK POZA OKNEM */
-
-        window.addEventListener(
-            "click",
-            (e)=>{
-
-                if(e.target === modal){
-
-                    modal.style.display =
-                    "none";
-
-                }
-
-            }
-        );
-
-        /* REGULAMIN */
-
-        if(continueButton){
-
-            continueButton.addEventListener(
-                "click",
-                ()=>{
-
-                    if(
-                        !acceptRules.checked
-                    ){
-
-                        const currentLanguage =
-                        localStorage.getItem(
-                            "language"
-                        ) || "pl";
-
-                        if(
-                            currentLanguage
-                            === "en"
-                        ){
-
-                            alert(
-                                "Please accept the rules first."
-                            );
-
-                        }
-
-                        else{
-
-                            alert(
-                                "Najpierw zaakceptuj regulamin."
-                            );
-
-                        }
-
-                        return;
-
-                    }
-
-                    orderSection.style.display =
-                    "block";
-
-                    continueButton.style.display =
-                    "none";
-
-                }
-            );
-
-        }
-
-    }
+const modal =
+document.getElementById(
+"orderModal"
 );
+
+
+
+const openButton =
+document.getElementById(
+"openOrderForm"
+);
+
+
+
+const closeButton =
+document.querySelector(
+".close-modal"
+);
+
+
+
+const continueButton =
+document.getElementById(
+"continueButton"
+);
+
+
+
+const acceptRules =
+document.getElementById(
+"acceptRules"
+);
+
+
+
+const orderSection =
+document.getElementById(
+"orderSection"
+);
+
+
+
+if(openButton){
+
+openButton.addEventListener(
+"click",
+(e)=>{
+
+
+e.preventDefault();
+
+
+modal.style.display =
+"block";
+
+
+});
+
+
+}
+
+
+
+if(closeButton){
+
+
+closeButton.addEventListener(
+"click",
+()=>{
+
+
+modal.style.display =
+"none";
+
+
+});
+
+
+}
+
+
+
+window.addEventListener(
+"click",
+(e)=>{
+
+
+if(e.target === modal){
+
+
+modal.style.display =
+"none";
+
+
+}
+
+
+});
+
+
+
+
+
+if(continueButton){
+
+
+continueButton.addEventListener(
+"click",
+()=>{
+
+
+if(!acceptRules.checked){
+
+
+const lang =
+localStorage.getItem(
+"language"
+)
+|| "pl";
+
+
+
+alert(
+
+lang === "en"
+
+?
+
+"Please accept the rules first."
+
+:
+
+"Najpierw zaakceptuj regulamin."
+
+);
+
+
+
+return;
+
+
+}
+
+
+
+orderSection.style.display =
+"block";
+
+
+continueButton.style.display =
+"none";
+
+
+
+});
+
+
+}
+
+
+
+});
+
+
+
+
+
 
 /* ==========================
    ŁAPKI 🐾
 ========================== */
 
+
 function createPaw(x,y){
 
-    const paw =
-    document.createElement(
-        "div"
-    );
 
-    paw.classList.add(
-        "paw-click"
-    );
+const paw =
+document.createElement(
+"div"
+);
 
-    paw.innerHTML = "🐾";
 
-    paw.style.left =
-    x + "px";
 
-    paw.style.top =
-    y + "px";
+paw.classList.add(
+"paw-click"
+);
 
-    document.body.appendChild(
-        paw
-    );
 
-    setTimeout(()=>{
 
-        paw.remove();
+paw.innerHTML =
+"🐾";
 
-    },800);
+
+
+paw.style.left =
+x+"px";
+
+
+
+paw.style.top =
+y+"px";
+
+
+
+document.body.appendChild(
+paw
+);
+
+
+
+setTimeout(
+()=>{
+
+
+paw.remove();
+
+
+},
+800
+);
+
 
 }
 
+
+
+
+
 document.addEventListener(
-    "DOMContentLoaded",
-    ()=>{
+"DOMContentLoaded",
+()=>{
 
-        const buttons =
-        document.querySelectorAll(
-            ".button"
-        );
 
-        buttons.forEach(button=>{
-
-            button.addEventListener(
-                "click",
-                (e)=>{
-
-                    createPaw(
-                        e.pageX,
-                        e.pageY
-                    );
-
-                }
-            );
-
-        });
-
-    }
+const buttons =
+document.querySelectorAll(
+".button"
 );
+
+
+
+buttons.forEach(button=>{
+
+
+button.addEventListener(
+"click",
+(e)=>{
+
+
+createPaw(
+e.pageX,
+e.pageY
+);
+
+
+});
+
+
+});
+
+
+});
+
+
+
+
+
+
 /* ==========================
    STATUS CHECKER
 ========================== */
 
+
 document.addEventListener(
-    "DOMContentLoaded",
-    ()=>{
+"DOMContentLoaded",
+()=>{
 
-        const button =
-        document.getElementById(
-            "checkStatus"
-        );
 
-        const input =
-        document.getElementById(
-            "animalCode"
-        );
+const button =
+document.getElementById(
+"checkStatus"
+);
 
-        const result =
-        document.getElementById(
-            "statusResult"
-        );
 
-        if(!button) return;
 
-        button.addEventListener(
-            "click",
-            ()=>{
+const input =
+document.getElementById(
+"animalCode"
+);
 
-                const code =
-                input.value
-                .trim()
-                .toLowerCase();
 
-                const commission =
-sheetCommissions[code]
-||
-commissions[code];
 
-                if(!commission){
+const result =
+document.getElementById(
+"statusResult"
+);
 
-                    const language =
-localStorage.getItem("language")
+
+
+if(!button)
+return;
+
+
+
+
+button.addEventListener(
+"click",
+()=>{
+
+
+
+const code =
+input.value
+.trim()
+.toLowerCase();
+
+
+
+
+const commission =
+sheetCommissions[code];
+
+
+
+
+
+const language =
+localStorage.getItem(
+"language"
+)
 || "pl";
+
+
+
+
+
+if(!commission){
+
+
 
 result.innerHTML = `
-    <h3>
-    ${
-        language === "en"
-        ? "❌ Commission not found"
-        : "❌ Nie znaleziono zamówienia"
-    }
-    </h3>
+
+<h3>
+
+${
+language === "en"
+
+?
+
+"❌ Commission not found"
+
+:
+
+"❌ Nie znaleziono zamówienia"
+
+}
+
+</h3>
+
 `;
-                    
 
-                    return;
+return;
 
-                }
 
-                const language =
-localStorage.getItem("language")
-|| "pl";
+}
+
+
+
+
 
 const animal =
 
+
 language === "en"
 
-? `🐾 ${commission.animalEN || commission.animalPL || code}`
 
-: `🐾 ${commission.animalPL || code}`;
+?
+
+`🐾 ${commission.animalEN}`
+
+
+:
+
+
+`🐾 ${commission.animalPL}`;
+
+
+
 
 const status =
+
+
 language === "en"
-? commission.statusEN
-: commission.statusPL;
+
+
+?
+
+
+commission.statusEN
+
+
+:
+
+
+commission.statusPL;
+
+
+
+
+
 
 result.innerHTML = `
 
-    <div class="status-card">
 
-        <h3>
+<div class="status-card">
 
-        ${animal}
 
-        </h3>
+<h3>
 
-        <p>
+${animal}
 
-        ${status}
+</h3>
 
-        </p>
-                        <div class="progress-bar">
 
-                            <div
-                            class="progress-fill"
+<p>
 
-                            style="
-                            width:${commission.progress}%;
-                            ">
+${status}
 
-                            </div>
+</p>
 
-                        </div>
 
-                        <p>
 
-                        ${commission.progress}%
+<div class="progress-bar">
 
-                        </p>
 
-                    </div>
+<div
 
-                `;
+class="progress-fill"
 
-            }
-        );
+style="width:${commission.progress}%"
 
-    }
-);
+>
+
+</div>
+
+
+</div>
+
+
+
+<p>
+
+${commission.progress}%
+
+</p>
+
+
+
+<p>
+
+📅 ${commission.updated}
+
+</p>
+
+
+</div>
+
+
+`;
+
+
+
+
+});
+
+
+});
+
+
+});
+
+
+
+
+
+
 /* ==========================
    LOAD GOOGLE SHEETS
 ========================== */
 
+
 async function loadSheetData(){
 
-    try{
 
-        const response =
-        await fetch(SHEET_URL);
+try{
 
-        const csv =
-        await response.text();
 
-        const rows =
-        csv.trim().split("\n");
+const response =
+await fetch(
+SHEET_URL
+);
 
-        rows.shift();
 
-        rows.forEach(row=>{
 
-            const cols =
-            row.split(",");
+const csv =
+await response.text();
 
-            const code =
-            cols[0]?.trim().toLowerCase();
 
-            if(!code) return;
 
-           sheetCommissions[code] = {
 
-    statusPL:
-    cols[1]?.trim(),
+const rows =
+csv.trim()
+.split("\n");
 
-    statusEN:
-    cols[2]?.trim(),
 
-    progress:
-    Number(cols[3]),
 
-    updated:
-    cols[4]?.trim(),
 
-    animalEN:
-    cols[5]?.trim(),
+rows.shift();
 
-    AnimalPL:
-    cols[6]?.trim()
+
+
+
+
+rows.forEach(row=>{
+
+
+
+const cols =
+row.split(",");
+
+
+
+
+const code =
+cols[0]
+?.trim()
+.toLowerCase();
+
+
+
+
+if(!code)
+return;
+
+
+
+
+
+sheetCommissions[code]={
+
+
+
+statusPL:
+cols[1]?.trim(),
+
+
+
+statusEN:
+cols[2]?.trim(),
+
+
+
+progress:
+Number(cols[3]),
+
+
+
+updated:
+cols[4]?.trim(),
+
+
+
+animalEN:
+cols[5]?.trim(),
+
+
+
+animalPL:
+cols[6]?.trim()
+
+
 
 };
 
-        });
 
-        console.log(
-            "Google Sheets loaded:",
-            sheetCommissions
-        );
 
-    }
 
-    catch(error){
+});
 
-        console.error(
-            "Sheet error:",
-            error
-        );
 
-    }
+
+
+
+console.log(
+"Google Sheets loaded:",
+sheetCommissions
+);
+
+
+
 
 }
+
+
+
+catch(error){
+
+
+
+console.error(
+"Sheet error:",
+error
+);
+
+
+
+}
+
+
+
+}
+
+
+
+
 
 loadSheetData();
